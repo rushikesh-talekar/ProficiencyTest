@@ -1,0 +1,21 @@
+package com.test.talekar.rushikesh.proficiencytest.activities;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.test.talekar.rushikesh.proficiencytest.R;
+
+/**
+ * This will be a parent Activity of all other activities.
+ * All common code among activities will go here.
+ *
+ * @author Rushikesh_Talekar
+ */
+public class AppActivity extends AppCompatActivity {
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_app);
+  }
+}

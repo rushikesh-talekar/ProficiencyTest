@@ -1,0 +1,16 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="s20sp">20sp</dimen>
+    <dimen name="elevation_6">6dp</dimen>
+    <dimen name="d10dp">10dp</dimen>
+    <dimen name="d15dp">15dp</dimen>
+    <dimen name="hamburger_icon_width">20dp</dimen>
+    <dimen name="hamburger_icon_height">16dp</dimen>
+    <dimen name="hamburger_icon_stroke">1dp</dimen>
+    <dimen name="s16sp">16sp</dimen>
+    <dimen name="d20dp">20dp</dimen>
+    <dimen name="d24dp">24dp</dimen>
+    <dimen name="d48dp">48dp</dimen>
+    <dimen name="s12sp">12sp</dimen>
+    <dimen name="d5dp">5dp</dimen>
+</resources>

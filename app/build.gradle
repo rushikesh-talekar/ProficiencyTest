@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+android {
+  compileSdkVersion 25
+  buildToolsVersion '25.0.0'
+  defaultConfig {
+    applicationId "com.test.talekar.rushikesh.proficencytest"
+    minSdkVersion 22
+    targetSdkVersion 25
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+
+  signingConfigs {
+    release {
+      keyAlias 'step_code_test'
+      keyPassword 'Test123$'
+      storeFile file('step-code-test-keystore.jks')
+      storePassword 'Test123$'
+    }
+  }
+
+  def BASE_URL = "BASE_URL"
+  buildTypes {
+    release {
+      applicationIdSuffix ".release"
+      signingConfig signingConfigs.release
+      minifyEnabled false
+      debuggable false
+      buildConfigField "String", BASE_URL, '""'
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+
+    debug {
+      applicationIdSuffix ".debug"
+      minifyEnabled false
+      buildConfigField "String", BASE_URL, '""'
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  productFlavors {
+    stepTestFlavorOne {
+      applicationId "com.test.proficencytest.testrelease"
+    }
+
+    stepTestFlavorTwo {
+      applicationId "com.test.proficencytest.testdebug"
+    }
+  }
+}
+
+dependencies {
+  compile fileTree(include: ['*.jar'], dir: 'libs')
+  compile 'com.android.support:appcompat-v7:25.+'
+  compile 'com.android.support:support-v4:25.+'
+  compile 'com.android.support:recyclerview-v7:25.+'
+  testCompile 'junit:junit:4.12'
+  androidTestCompile 'com.android.support.test:runner:1.0.1', {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+  androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2', {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+  compile project(':presenter')
+}
