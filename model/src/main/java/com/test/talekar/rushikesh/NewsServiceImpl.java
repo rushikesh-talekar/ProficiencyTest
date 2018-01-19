@@ -3,6 +3,7 @@ package com.test.talekar.rushikesh;
 import com.test.talekar.rushikesh.api.GetNewsAPI;
 import com.test.talekar.rushikesh.commons.SessionManager;
 import com.test.talekar.rushikesh.contracts.NewsServiceContract;
+import com.test.talekar.rushikesh.model.CountryNews;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ import retrofit2.Response;
  */
 
 public class NewsServiceImpl implements NewsServiceContract,
-    Callback<List<String>> {
+    Callback<CountryNews> {
   NewsServiceContract.Callback callback;
 
   public NewsServiceImpl(
@@ -30,7 +31,7 @@ public class NewsServiceImpl implements NewsServiceContract,
   @Override
   public void getNewsData() {
     try {
-      Call<List<String>> call = SessionManager.getSessionManager()
+      Call<CountryNews> call = SessionManager.getSessionManager()
           .createRestAdapter().create(GetNewsAPI.class).getNewsData();
       call.enqueue(this);
     } catch (Exception e) {
@@ -39,14 +40,14 @@ public class NewsServiceImpl implements NewsServiceContract,
   }
 
   @Override
-  public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+  public void onResponse(Call<CountryNews> call, Response<CountryNews> response) {
     if (response.isSuccessful()) {
       callback.onGetNewsSuccess(response.body());
     }
   }
 
   @Override
-  public void onFailure(Call<List<String>> call, Throwable throwable) {
+  public void onFailure(Call<CountryNews> call, Throwable throwable) {
     callback.onGetNewsFailure();
   }
 }

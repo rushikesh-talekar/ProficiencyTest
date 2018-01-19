@@ -21,6 +21,13 @@ public class HomeActivity extends AppActivity implements
     setContentView(R.layout.activity_home);
     initUI();
     setListners();
+    addNewsFragment();
+  }
+
+  private void addNewsFragment() {
+    getSupportFragmentManager().beginTransaction()
+        .add(R.id.activity_home_container, HomeFragment.newInstance())
+        .commit();
   }
 
   /**

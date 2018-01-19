@@ -1,5 +1,7 @@
 package com.test.talekar.rushikesh.contracts;
 
+import com.test.talekar.rushikesh.model.CountryNews;
+
 import java.util.List;
 
 /**
@@ -26,9 +28,9 @@ public interface NewsServiceContract {
     /**
      * This method will notify user that API request is successful.
      *
-     * @param newsDataList - news data returned by API
+     * @param newsData - news data returned by API
      */
-    void onGetNewsSuccess(List<String> newsDataList);
+    void onGetNewsSuccess(CountryNews newsData);
 
     /**
      * This method will notify user that API request is failed.

@@ -8,5 +8,5 @@ package com.test.talekar.rushikesh.commons;
 
 public class Constants {
 
-  public static final String URL_GET_NEWS_DATA = "";
+  public static final String URL_GET_NEWS_DATA = "facts.json";
 }

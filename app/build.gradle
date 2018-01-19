@@ -28,14 +28,14 @@ android {
       signingConfig signingConfigs.release
       minifyEnabled false
       debuggable false
-      buildConfigField "String", BASE_URL, '""'
+      buildConfigField "String", BASE_URL, '"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/"'
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
 
     debug {
       applicationIdSuffix ".debug"
       minifyEnabled false
-      buildConfigField "String", BASE_URL, '""'
+      buildConfigField "String", BASE_URL, '"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/"'
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }

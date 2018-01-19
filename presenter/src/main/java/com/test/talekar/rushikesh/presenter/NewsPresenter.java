@@ -1,10 +1,11 @@
 package com.test.talekar.rushikesh.presenter;
 
+import android.util.Log;
+
 import com.test.talekar.rushikesh.NewsServiceImpl;
 import com.test.talekar.rushikesh.contracts.NewsServiceContract;
+import com.test.talekar.rushikesh.model.CountryNews;
 import com.test.talekar.rushikesh.presenter.contracts.NewsContract;
-
-import java.util.List;
 
 /**
  * Business logic releated to news will be here.
@@ -14,6 +15,7 @@ import java.util.List;
 
 public class NewsPresenter implements NewsContract.UserActionListner,
     NewsServiceContract.Callback {
+  public static final String TAG = NewsPresenter.class.getSimpleName();
   NewsContract viewContract;
 
   public NewsPresenter(NewsContract viewContract) {
@@ -27,7 +29,8 @@ public class NewsPresenter implements NewsContract.UserActionListner,
   }
 
   @Override
-  public void onGetNewsSuccess(List<String> newsData) {
+  public void onGetNewsSuccess(CountryNews newsData) {
+    Log.e(TAG, "" + newsData.getRows().size());
     if (null != viewContract) {
       viewContract.onGetNewsSuccess();
     }

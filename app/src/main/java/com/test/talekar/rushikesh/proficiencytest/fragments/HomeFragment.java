@@ -7,7 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.test.talekar.rushikesh.presenter.NewsPresenter;
+import com.test.talekar.rushikesh.presenter.contracts.NewsContract;
 import com.test.talekar.rushikesh.proficiencytest.R;
 
 
@@ -19,7 +22,7 @@ import com.test.talekar.rushikesh.proficiencytest.R;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements NewsContract {
 
   private OnFragmentInteractionListener mListener;
 
@@ -42,21 +45,27 @@ public class HomeFragment extends Fragment {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    initiateAPIToGetNews();
+  }
+
+  private void initiateAPIToGetNews() {
+    NewsContract.UserActionListner userActionListner = new NewsPresenter(this);
+    userActionListner.getNewsData();
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_home, container, false);
+    View v = inflater.inflate(R.layout.fragment_home, container, false);
+    initUI(v);
+    return v;
   }
 
-  // TODO: Rename method, update argument and hook method into UI event
-  public void onButtonPressed(Uri uri) {
-    if (mListener != null) {
-      mListener.onFragmentInteraction(uri);
-    }
+  private void initUI(View v) {
+
   }
+
 
   @Override
   public void onAttach(Context context) {
@@ -73,6 +82,16 @@ public class HomeFragment extends Fragment {
   public void onDetach() {
     super.onDetach();
     mListener = null;
+  }
+
+  @Override
+  public void onGetNewsSuccess() {
+
+  }
+
+  @Override
+  public void onGetNewsFailure() {
+    Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
   }
 
   /**

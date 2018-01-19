@@ -1,6 +1,7 @@
 package com.test.talekar.rushikesh.api;
 
 import com.test.talekar.rushikesh.commons.Constants;
+import com.test.talekar.rushikesh.model.CountryNews;
 
 import java.util.List;
 
@@ -21,5 +22,5 @@ public interface GetNewsAPI {
    * return List<String> - a list of news from webservice.
    */
   @GET(Constants.URL_GET_NEWS_DATA)
-  Call<List<String>> getNewsData();
+  Call<CountryNews> getNewsData();
 }
