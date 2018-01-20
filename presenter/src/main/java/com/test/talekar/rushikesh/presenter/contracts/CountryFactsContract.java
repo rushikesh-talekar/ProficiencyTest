@@ -11,13 +11,13 @@ import java.util.List;
  * @author Rushikesh_Talekar
  */
 
-public interface NewsContract {
+public interface CountryFactsContract {
   /**
    * This method will notify user that API request is successful.
    *
    * @param rowsData - data from server
    */
-  void onGetNewsSuccess(List<Row> rowsData);
+  void onGetCountryFactsSuccess(List<Row> rowsData);
 
   /**
    * This method will update UI if error occurs while fetching data
@@ -41,6 +41,6 @@ public interface NewsContract {
    */
   interface UserActionListner {
 
-    void getNewsData();
+    void getCountryFacts();
   }
 }

@@ -1,9 +1,9 @@
 package com.test.talekar.rushikesh;
 
-import com.test.talekar.rushikesh.api.GetNewsAPI;
+import com.test.talekar.rushikesh.api.GetCountryFactsAPI;
 import com.test.talekar.rushikesh.callback.ResponseCallback;
 import com.test.talekar.rushikesh.commons.SessionManager;
-import com.test.talekar.rushikesh.contracts.NewsServiceContract;
+import com.test.talekar.rushikesh.contracts.CountryFactsServiceContract;
 import com.test.talekar.rushikesh.model.CountryNews;
 
 import retrofit2.Call;
@@ -18,19 +18,19 @@ import retrofit2.Response;
  * @author Rushikesh_Talekar
  */
 
-public class NewsServiceImpl implements NewsServiceContract,
+public class CountryFactsServiceImpl implements CountryFactsServiceContract,
     Callback<CountryNews> {
   ResponseCallback callback;
 
-  public NewsServiceImpl(ResponseCallback callback) {
+  public CountryFactsServiceImpl(ResponseCallback callback) {
     this.callback = callback;
   }
 
   @Override
-  public void getNewsData() {
+  public void getCountryfacts() {
     try {
       Call<CountryNews> call = SessionManager.getSessionManager()
-          .createRestAdapter().create(GetNewsAPI.class).getNewsData();
+          .createRestAdapter().create(GetCountryFactsAPI.class).getCountryFacts();
       call.enqueue(this);
     } catch (Exception e) {
       e.printStackTrace();
@@ -40,12 +40,12 @@ public class NewsServiceImpl implements NewsServiceContract,
   @Override
   public void onResponse(Call<CountryNews> call, Response<CountryNews> response) {
     if (response.isSuccessful()) {
-      callback.onGetNewsSuccess(response.body());
+      callback.onGetCountryFactsSuccess(response.body());
     }
   }
 
   @Override
   public void onFailure(Call<CountryNews> call, Throwable throwable) {
-    callback.onGetNewsFailure();
+    callback.onGetCountryFactsFailure();
   }
 }

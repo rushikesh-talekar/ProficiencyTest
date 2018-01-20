@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.test.talekar.rushikesh.model.Row;
-import com.test.talekar.rushikesh.presenter.NewsPresenter;
-import com.test.talekar.rushikesh.presenter.contracts.NewsContract;
+import com.test.talekar.rushikesh.presenter.CountryFactsPresenter;
+import com.test.talekar.rushikesh.presenter.contracts.CountryFactsContract;
 import com.test.talekar.rushikesh.proficiencytest.R;
 
 import java.util.List;
@@ -23,7 +23,7 @@ import java.util.List;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements NewsContract {
+public class HomeFragment extends Fragment implements CountryFactsContract {
 
   private OnFragmentInteractionListener mListener;
 
@@ -50,8 +50,8 @@ public class HomeFragment extends Fragment implements NewsContract {
   }
 
   private void initiateAPIToGetNews() {
-    NewsContract.UserActionListner userActionListner = new NewsPresenter(this);
-    userActionListner.getNewsData();
+    CountryFactsContract.UserActionListner userActionListner = new CountryFactsPresenter(this);
+    userActionListner.getCountryFacts();
   }
 
   @Override
@@ -86,7 +86,7 @@ public class HomeFragment extends Fragment implements NewsContract {
   }
 
   @Override
-  public void onGetNewsSuccess(List<Row> rowsData) {
+  public void onGetCountryFactsSuccess(List<Row> rowsData) {
 
   }
 

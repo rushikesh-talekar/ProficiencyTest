@@ -12,7 +12,7 @@ import retrofit2.http.GET;
  * @author Rushikesh_Talekar
  */
 
-public interface GetNewsAPI {
+public interface GetCountryFactsAPI {
   /**
    * This is a method which will initiate API call and capture results and pass results to
    * service callback.
@@ -20,5 +20,5 @@ public interface GetNewsAPI {
    * return List<String> - a list of news from webservice.
    */
   @GET(Constants.URL_GET_NEWS_DATA)
-  Call<CountryNews> getNewsData();
+  Call<CountryNews> getCountryFacts();
 }

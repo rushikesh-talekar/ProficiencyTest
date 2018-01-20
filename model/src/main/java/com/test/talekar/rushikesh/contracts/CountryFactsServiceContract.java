@@ -12,9 +12,9 @@ import java.util.List;
  * @author Rushikesh_Talekar
  */
 
-public interface NewsServiceContract {
+public interface CountryFactsServiceContract {
   /**
    * This method will initiate atual service call to get data.
    */
-  void getNewsData();
+  void getCountryfacts();
 }

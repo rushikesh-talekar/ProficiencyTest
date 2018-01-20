@@ -14,10 +14,10 @@ public interface ResponseCallback {
    *
    * @param newsData - news data returned by API
    */
-  void onGetNewsSuccess(CountryNews newsData);
+  void onGetCountryFactsSuccess(CountryNews newsData);
 
   /**
    * This method will notify user that API request is failed.
    */
-  void onGetNewsFailure();
+  void onGetCountryFactsFailure();
 }
