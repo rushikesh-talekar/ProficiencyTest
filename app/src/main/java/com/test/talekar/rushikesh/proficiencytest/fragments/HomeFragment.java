@@ -1,13 +1,11 @@
 package com.test.talekar.rushikesh.proficiencytest.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.test.talekar.rushikesh.model.Row;
 import com.test.talekar.rushikesh.presenter.NewsPresenter;
@@ -104,7 +102,7 @@ public class HomeFragment extends Fragment implements NewsContract {
 
   @Override
   public void setToolbarTitle(String title) {
-
+    mListener.setToolbarTitle(title);
   }
 
   /**
@@ -118,6 +116,6 @@ public class HomeFragment extends Fragment implements NewsContract {
    * >Communicating with Other Fragments</a> for more information.
    */
   public interface OnFragmentInteractionListener {
-    void onFragmentInteraction(Uri uri);
+    void setToolbarTitle(String title);
   }
 }

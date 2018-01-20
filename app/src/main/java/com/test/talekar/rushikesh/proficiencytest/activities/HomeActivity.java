@@ -1,7 +1,7 @@
 package com.test.talekar.rushikesh.proficiencytest.activities;
 
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 
 import com.test.talekar.rushikesh.proficiencytest.R;
 import com.test.talekar.rushikesh.proficiencytest.fragments.HomeFragment;
@@ -13,7 +13,6 @@ import com.test.talekar.rushikesh.proficiencytest.fragments.HomeFragment;
  */
 public class HomeActivity extends AppActivity implements
     HomeFragment.OnFragmentInteractionListener {
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +39,12 @@ public class HomeActivity extends AppActivity implements
    * This method will initialize views as required.
    */
   private void initUI() {
-    //Initialize toolbar
+    toolbar = (Toolbar) findViewById(R.id.toolbar);
+    setToolbarTitle(getString(R.string.home_page));
   }
 
   @Override
-  public void onFragmentInteraction(Uri uri) {
-
+  public void setToolbarTitle(String title) {
+    super.setToolbarTitle(title);
   }
 }
