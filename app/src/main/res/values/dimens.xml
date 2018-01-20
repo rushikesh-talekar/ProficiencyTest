@@ -2,7 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="s20sp">20sp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
-    <dimen name="d10dp">10dp</dimen>
+    <dimen name="d8dp">8dp</dimen>
     <dimen name="d15dp">15dp</dimen>
     <dimen name="hamburger_icon_width">20dp</dimen>
     <dimen name="hamburger_icon_height">16dp</dimen>

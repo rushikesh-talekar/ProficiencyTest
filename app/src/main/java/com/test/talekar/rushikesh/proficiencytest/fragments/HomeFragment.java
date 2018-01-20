@@ -3,14 +3,18 @@ package com.test.talekar.rushikesh.proficiencytest.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.test.talekar.rushikesh.model.Row;
 import com.test.talekar.rushikesh.presenter.CountryFactsPresenter;
 import com.test.talekar.rushikesh.presenter.contracts.CountryFactsContract;
 import com.test.talekar.rushikesh.proficiencytest.R;
+import com.test.talekar.rushikesh.proficiencytest.adapters.CountryFactsCustomAdapter;
 
 import java.util.List;
 
@@ -26,6 +30,7 @@ import java.util.List;
 public class HomeFragment extends Fragment implements CountryFactsContract {
 
   private OnFragmentInteractionListener mListener;
+  private RecyclerView mRVCountryFacts;
 
   public HomeFragment() {
     // Required empty public constructor
@@ -64,7 +69,9 @@ public class HomeFragment extends Fragment implements CountryFactsContract {
   }
 
   private void initUI(View v) {
-
+    // BEGIN_INCLUDE(initializeRecyclerView)
+    mRVCountryFacts = (RecyclerView) v.findViewById(R.id.fragment_home_rv);
+    mRVCountryFacts.setLayoutManager(new LinearLayoutManager(getActivity()));
   }
 
 
@@ -87,7 +94,9 @@ public class HomeFragment extends Fragment implements CountryFactsContract {
 
   @Override
   public void onGetCountryFactsSuccess(List<Row> rowsData) {
-
+    Toast.makeText(getContext(), "" + rowsData.size(), Toast.LENGTH_SHORT).show();
+    CountryFactsCustomAdapter countryFactsCustomAdapter = new CountryFactsCustomAdapter(rowsData);
+    mRVCountryFacts.setAdapter(countryFactsCustomAdapter);
   }
 
   @Override

@@ -5,7 +5,7 @@ import android.util.Log;
 import com.test.talekar.rushikesh.CountryFactsServiceImpl;
 import com.test.talekar.rushikesh.callback.ResponseCallback;
 import com.test.talekar.rushikesh.contracts.CountryFactsServiceContract;
-import com.test.talekar.rushikesh.model.CountryNews;
+import com.test.talekar.rushikesh.model.CountryFacts;
 import com.test.talekar.rushikesh.presenter.contracts.CountryFactsContract;
 import com.test.talekar.rushikesh.util.CollectionUtil;
 
@@ -31,7 +31,7 @@ public class CountryFactsPresenter implements CountryFactsContract.UserActionLis
   }
 
   @Override
-  public void onGetCountryFactsSuccess(CountryNews newsData) {
+  public void onGetCountryFactsSuccess(CountryFacts newsData) {
     Log.e(TAG, "" + newsData.getRows().size());
     if (null == viewContract) {
       return;

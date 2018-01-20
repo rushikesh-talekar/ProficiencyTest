@@ -1,7 +1,7 @@
 package com.test.talekar.rushikesh.api;
 
 import com.test.talekar.rushikesh.commons.Constants;
-import com.test.talekar.rushikesh.model.CountryNews;
+import com.test.talekar.rushikesh.model.CountryFacts;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -20,5 +20,5 @@ public interface GetCountryFactsAPI {
    * return List<String> - a list of news from webservice.
    */
   @GET(Constants.URL_GET_NEWS_DATA)
-  Call<CountryNews> getCountryFacts();
+  Call<CountryFacts> getCountryFacts();
 }

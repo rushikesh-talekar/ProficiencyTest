@@ -1,6 +1,6 @@
 package com.test.talekar.rushikesh.callback;
 
-import com.test.talekar.rushikesh.model.CountryNews;
+import com.test.talekar.rushikesh.model.CountryFacts;
 
 /**
  * This is a callback mechanism for implementer.
@@ -14,7 +14,7 @@ public interface ResponseCallback {
    *
    * @param newsData - news data returned by API
    */
-  void onGetCountryFactsSuccess(CountryNews newsData);
+  void onGetCountryFactsSuccess(CountryFacts newsData);
 
   /**
    * This method will notify user that API request is failed.

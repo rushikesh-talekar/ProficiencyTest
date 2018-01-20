@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Rushikesh_Talekar on 20-01-2018.
  */
 
-public class CountryNews implements Parcelable {
+public class CountryFacts implements Parcelable {
   @SerializedName("title")
   @Expose
   private String title;
@@ -48,25 +48,25 @@ public class CountryNews implements Parcelable {
     dest.writeList(this.rows);
   }
 
-  public CountryNews() {
+  public CountryFacts() {
   }
 
-  protected CountryNews(Parcel in) {
+  protected CountryFacts(Parcel in) {
     this.title = in.readString();
     this.rows = new ArrayList<Row>();
     in.readList(this.rows, Row.class.getClassLoader());
   }
 
-  public static final Parcelable.Creator<CountryNews> CREATOR =
-      new Parcelable.Creator<CountryNews>() {
+  public static final Parcelable.Creator<CountryFacts> CREATOR =
+      new Parcelable.Creator<CountryFacts>() {
         @Override
-        public CountryNews createFromParcel(Parcel source) {
-          return new CountryNews(source);
+        public CountryFacts createFromParcel(Parcel source) {
+          return new CountryFacts(source);
         }
 
         @Override
-        public CountryNews[] newArray(int size) {
-          return new CountryNews[size];
+        public CountryFacts[] newArray(int size) {
+          return new CountryFacts[size];
         }
       };
 }

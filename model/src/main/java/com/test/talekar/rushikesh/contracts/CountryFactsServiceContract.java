@@ -1,9 +1,5 @@
 package com.test.talekar.rushikesh.contracts;
 
-import com.test.talekar.rushikesh.model.CountryNews;
-
-import java.util.List;
-
 /**
  * This is a service contract.
  * It provide a action for service implementor to initiate API call.
