@@ -26,6 +26,16 @@ public class CountryFactsCustomAdapter extends RecyclerView.Adapter<CountryFacts
     this.mDataset = dataset;
   }
 
+  /**
+   * Method to update dataset
+   *
+   * @param dataset - updated dataset
+   */
+  public void refreshfacts(List<Row> dataset) {
+    mDataset = dataset;
+    notifyDataSetChanged();
+  }
+
   // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
   // Create new views (invoked by the layout manager)
   @Override

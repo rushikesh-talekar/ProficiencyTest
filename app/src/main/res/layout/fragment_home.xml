@@ -4,9 +4,15 @@
     android:layout_height="match_parent"
     tools:context="com.test.talekar.rushikesh.proficiencytest.fragments.HomeFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fragment_home_rv"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_home_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

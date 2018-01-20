@@ -3,6 +3,7 @@ package com.test.talekar.rushikesh.proficiencytest.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import com.test.talekar.rushikesh.presenter.contracts.CountryFactsContract;
 import com.test.talekar.rushikesh.proficiencytest.R;
 import com.test.talekar.rushikesh.proficiencytest.adapters.CountryFactsCustomAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,6 +33,8 @@ public class HomeFragment extends Fragment implements CountryFactsContract {
 
   private OnFragmentInteractionListener mListener;
   private RecyclerView mRVCountryFacts;
+  private SwipeRefreshLayout swipLayout;
+  private CountryFactsCustomAdapter countryFactsCustomAdapter;
 
   public HomeFragment() {
     // Required empty public constructor
@@ -51,10 +55,14 @@ public class HomeFragment extends Fragment implements CountryFactsContract {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    initiateAPIToGetNews();
+    initiateAPIToGetFacts();
   }
 
-  private void initiateAPIToGetNews() {
+  private void initiateAPIToGetFacts() {
+    if (null != swipLayout) {
+      // start refresh animation
+      swipLayout.setRefreshing(true);
+    }
     CountryFactsContract.UserActionListner userActionListner = new CountryFactsPresenter(this);
     userActionListner.getCountryFacts();
   }
@@ -65,13 +73,36 @@ public class HomeFragment extends Fragment implements CountryFactsContract {
     // Inflate the layout for this fragment
     View v = inflater.inflate(R.layout.fragment_home, container, false);
     initUI(v);
+    setListners();
     return v;
+  }
+
+  /**
+   * Method to add listners
+   */
+  private void setListners() {
+    swipLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        initiateAPIToGetFacts();
+      }
+    });
   }
 
   private void initUI(View v) {
     // BEGIN_INCLUDE(initializeRecyclerView)
     mRVCountryFacts = (RecyclerView) v.findViewById(R.id.fragment_home_rv);
     mRVCountryFacts.setLayoutManager(new LinearLayoutManager(getActivity()));
+    // END_INCLUDE(initializeRecyclerView)
+
+    // BEGIN_INCLUDE(initializeSwipeLayout)
+    swipLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefreshLayout);
+    // END_INCLUDE(initializeSwipeLayout)
+
+    // BEGIN_INCLUDE(initializeCustomAdapter)
+    countryFactsCustomAdapter = new CountryFactsCustomAdapter(new ArrayList<Row>());
+    mRVCountryFacts.setAdapter(countryFactsCustomAdapter);
+    // END_INCLUDE(initializeCustomAdapter)
   }
 
 
@@ -94,19 +125,28 @@ public class HomeFragment extends Fragment implements CountryFactsContract {
 
   @Override
   public void onGetCountryFactsSuccess(List<Row> rowsData) {
+    if (null != swipLayout) {
+      // Stop refresh animation
+      swipLayout.setRefreshing(false);
+    }
     Toast.makeText(getContext(), "" + rowsData.size(), Toast.LENGTH_SHORT).show();
-    CountryFactsCustomAdapter countryFactsCustomAdapter = new CountryFactsCustomAdapter(rowsData);
-    mRVCountryFacts.setAdapter(countryFactsCustomAdapter);
+    countryFactsCustomAdapter.refreshfacts(rowsData);
   }
 
   @Override
   public void showError() {
-
+    if (null != swipLayout) {
+      // Stop refresh animation
+      swipLayout.setRefreshing(false);
+    }
   }
 
   @Override
   public void showEmptyReponseError() {
-
+    if (null != swipLayout) {
+      // Stop refresh animation
+      swipLayout.setRefreshing(false);
+    }
   }
 
   @Override
