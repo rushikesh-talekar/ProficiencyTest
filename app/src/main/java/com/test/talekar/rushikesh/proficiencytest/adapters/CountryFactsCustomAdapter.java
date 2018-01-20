@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.test.talekar.rushikesh.model.Row;
 import com.test.talekar.rushikesh.proficiencytest.R;
 
@@ -44,6 +45,13 @@ public class CountryFactsCustomAdapter extends RecyclerView.Adapter<CountryFacts
     Row factRow = mDataset.get(i);
     viewHolder.getTvTitle().setText(factRow.getTitle());
     viewHolder.getTvDescription().setText(factRow.getDescription());
+
+    //Load thumbnail of images
+    Picasso.with(viewHolder.getIvThumbnail().getContext())
+        .load(factRow.getImageHref())
+        .placeholder(R.drawable.ic_launcher_background)
+        .error(R.drawable.ic_launcher_background)
+        .into(viewHolder.getIvThumbnail());
   }
 
   @Override
@@ -85,6 +93,8 @@ public class CountryFactsCustomAdapter extends RecyclerView.Adapter<CountryFacts
     public ImageView getIvThumbnail() {
       return ivThumbnail;
     }
+
+
   }
   // END_INCLUDE(recyclerView-ViewHolder)
 }
