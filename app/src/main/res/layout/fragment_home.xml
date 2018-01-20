@@ -12,7 +12,14 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fragment_home_rv"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_empty_state"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/error_data_not_available"
+            android:gravity="center"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

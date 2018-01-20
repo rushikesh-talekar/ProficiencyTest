@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.test.talekar.rushikesh.proficiencytest.R;
 import com.test.talekar.rushikesh.proficiencytest.callbacks.ProgressbarLoader;
+import com.test.talekar.rushikesh.proficiencytest.util.DialogUtil;
 import com.test.talekar.rushikesh.util.NetworkUtil;
 
 /**
@@ -79,5 +80,11 @@ public class AppFragment extends Fragment implements ProgressbarLoader {
   protected boolean isNetworkConnected() {
     return NetworkUtil.getConnectivityStatus(getContext()) !=
         NetworkUtil.NETWORK_STATUS_NOT_CONNECTED;
+  }
+
+  protected void showNoNetworkError() {
+    DialogUtil.showAlertDialog(getContext(),getString(R.string.error),
+            getString(R.string.error_no_network));
+
   }
 }

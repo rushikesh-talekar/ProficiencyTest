@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.test.talekar.rushikesh.model.Row;
@@ -16,6 +17,7 @@ import com.test.talekar.rushikesh.presenter.CountryFactsPresenter;
 import com.test.talekar.rushikesh.presenter.contracts.CountryFactsContract;
 import com.test.talekar.rushikesh.proficiencytest.R;
 import com.test.talekar.rushikesh.proficiencytest.adapters.CountryFactsCustomAdapter;
+import com.test.talekar.rushikesh.proficiencytest.util.DialogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +31,13 @@ import java.util.List;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements CountryFactsContract {
+public class HomeFragment extends AppFragment implements CountryFactsContract {
 
   private OnFragmentInteractionListener mListener;
   private RecyclerView mRVCountryFacts;
   private SwipeRefreshLayout swipLayout;
   private CountryFactsCustomAdapter countryFactsCustomAdapter;
+  private TextView tvEmptyState;
 
   public HomeFragment() {
     // Required empty public constructor
@@ -55,16 +58,21 @@ public class HomeFragment extends Fragment implements CountryFactsContract {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    showLoading(true);
     initiateAPIToGetFacts();
   }
 
   private void initiateAPIToGetFacts() {
-    if (null != swipLayout) {
-      // start refresh animation
-      swipLayout.setRefreshing(true);
-    }
-    CountryFactsContract.UserActionListner userActionListner = new CountryFactsPresenter(this);
-    userActionListner.getCountryFacts();
+    if (isNetworkConnected()) {
+      if (null != swipLayout) {
+        // start refresh animation
+        swipLayout.setRefreshing(true);
+      }
+      CountryFactsContract.UserActionListner userActionListner = new CountryFactsPresenter(this);
+      userActionListner.getCountryFacts();
+    } else {
+      showNoNetworkError();
+      }
   }
 
   @Override
@@ -103,6 +111,8 @@ public class HomeFragment extends Fragment implements CountryFactsContract {
     countryFactsCustomAdapter = new CountryFactsCustomAdapter(new ArrayList<Row>());
     mRVCountryFacts.setAdapter(countryFactsCustomAdapter);
     // END_INCLUDE(initializeCustomAdapter)
+
+    tvEmptyState = (TextView) v.findViewById(R.id.tv_empty_state);
   }
 
 
@@ -129,7 +139,8 @@ public class HomeFragment extends Fragment implements CountryFactsContract {
       // Stop refresh animation
       swipLayout.setRefreshing(false);
     }
-    Toast.makeText(getContext(), "" + rowsData.size(), Toast.LENGTH_SHORT).show();
+    showLoading(false);
+    setUIstate(true);
     countryFactsCustomAdapter.refreshfacts(rowsData);
   }
 
@@ -139,6 +150,10 @@ public class HomeFragment extends Fragment implements CountryFactsContract {
       // Stop refresh animation
       swipLayout.setRefreshing(false);
     }
+    showLoading(false);
+    DialogUtil.showAlertDialog(getContext(),getString(R.string.error),
+            getString(R.string.something_went_wrong));
+    setUIstate(false);
   }
 
   @Override
@@ -147,6 +162,10 @@ public class HomeFragment extends Fragment implements CountryFactsContract {
       // Stop refresh animation
       swipLayout.setRefreshing(false);
     }
+    showLoading(false);
+    DialogUtil.showAlertDialog(getContext(),getString(R.string.error),
+            getString(R.string.error_data_not_available));
+    setUIstate(false);
   }
 
   @Override
@@ -167,4 +186,18 @@ public class HomeFragment extends Fragment implements CountryFactsContract {
   public interface OnFragmentInteractionListener {
     void setToolbarTitle(String title);
   }
+
+  /**
+   * This method check if data is available to show and load UI accordingly.
+   * @param isDataAvailable - if data available or not
+   */
+  public void setUIstate(boolean isDataAvailable) {
+    if (isDataAvailable){
+      mRVCountryFacts.setVisibility(View.VISIBLE);
+      tvEmptyState.setVisibility(View.GONE);
+  } else {
+    mRVCountryFacts.setVisibility(View.GONE);
+    tvEmptyState.setVisibility(View.VISIBLE);
+  }
+}
 }
