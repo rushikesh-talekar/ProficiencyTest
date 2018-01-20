@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.test.talekar.rushikesh.proficiencytest.R;
 import com.test.talekar.rushikesh.proficiencytest.callbacks.ProgressbarLoader;
-import com.test.talekar.rushikesh.proficiencytest.util.NetworkUtil;
+import com.test.talekar.rushikesh.util.NetworkUtil;
 
 /**
  * Parent fragment to store all common code.

@@ -3,8 +3,6 @@ package com.test.talekar.rushikesh.api;
 import com.test.talekar.rushikesh.commons.Constants;
 import com.test.talekar.rushikesh.model.CountryNews;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 

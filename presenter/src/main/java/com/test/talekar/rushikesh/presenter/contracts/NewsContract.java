@@ -1,5 +1,9 @@
 package com.test.talekar.rushikesh.presenter.contracts;
 
+import com.test.talekar.rushikesh.model.Row;
+
+import java.util.List;
+
 /**
  * This interface will have all contract method between presenter and UI.
  * <p>
@@ -10,13 +14,25 @@ package com.test.talekar.rushikesh.presenter.contracts;
 public interface NewsContract {
   /**
    * This method will notify user that API request is successful.
+   *
+   * @param rowsData - data from server
    */
-  void onGetNewsSuccess();
+  void onGetNewsSuccess(List<Row> rowsData);
 
   /**
-   * This method will notify user that API request is failed.
+   * This method will update UI if error occurs while fetching data
    */
-  void onGetNewsFailure();
+  void showError();
+
+  /**
+   * This method will update UI if response from server is empty
+   */
+  void showEmptyReponseError();
+
+  /**
+   * This method sets toolbar title.
+   */
+  void setToolbarTitle(String title);
 
   /**
    * This class is to initiate call from presenter.

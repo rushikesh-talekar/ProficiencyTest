@@ -9,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.test.talekar.rushikesh.model.Row;
 import com.test.talekar.rushikesh.presenter.NewsPresenter;
 import com.test.talekar.rushikesh.presenter.contracts.NewsContract;
 import com.test.talekar.rushikesh.proficiencytest.R;
+
+import java.util.List;
 
 
 /**
@@ -85,13 +88,23 @@ public class HomeFragment extends Fragment implements NewsContract {
   }
 
   @Override
-  public void onGetNewsSuccess() {
+  public void onGetNewsSuccess(List<Row> rowsData) {
 
   }
 
   @Override
-  public void onGetNewsFailure() {
-    Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+  public void showError() {
+
+  }
+
+  @Override
+  public void showEmptyReponseError() {
+
+  }
+
+  @Override
+  public void setToolbarTitle(String title) {
+
   }
 
   /**

@@ -1,4 +1,4 @@
-package com.test.talekar.rushikesh.proficiencytest.util;
+package com.test.talekar.rushikesh.util;
 
 import java.util.Collection;
 

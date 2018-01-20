@@ -1,11 +1,10 @@
 package com.test.talekar.rushikesh;
 
 import com.test.talekar.rushikesh.api.GetNewsAPI;
+import com.test.talekar.rushikesh.callback.ResponseCallback;
 import com.test.talekar.rushikesh.commons.SessionManager;
 import com.test.talekar.rushikesh.contracts.NewsServiceContract;
 import com.test.talekar.rushikesh.model.CountryNews;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,10 +20,9 @@ import retrofit2.Response;
 
 public class NewsServiceImpl implements NewsServiceContract,
     Callback<CountryNews> {
-  NewsServiceContract.Callback callback;
+  ResponseCallback callback;
 
-  public NewsServiceImpl(
-      NewsServiceContract.Callback callback) {
+  public NewsServiceImpl(ResponseCallback callback) {
     this.callback = callback;
   }
 
