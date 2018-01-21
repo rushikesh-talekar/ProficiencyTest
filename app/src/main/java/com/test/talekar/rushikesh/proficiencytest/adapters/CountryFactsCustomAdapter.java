@@ -1,6 +1,8 @@
 package com.test.talekar.rushikesh.proficiencytest.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,8 +56,18 @@ public class CountryFactsCustomAdapter extends RecyclerView.Adapter<CountryFacts
 // Get element from your dataset at this position and replace the contents of the view
     // with that element
     Row factRow = mDataset.get(i);
-    viewHolder.getTvTitle().setText(factRow.getTitle());
-    viewHolder.getTvDescription().setText(factRow.getDescription());
+    Context context = viewHolder.getTvTitle().getContext();
+
+    //Check if title is available or not and set a valid value to title textview
+    String title = TextUtils.isEmpty(factRow.getTitle()) ? context.getString(R.string.na) : factRow
+        .getTitle();
+    viewHolder.getTvTitle().setText(title);
+
+    //Check if description is available or not and set a valid value to descri[ption textview
+    String description =
+        TextUtils.isEmpty(factRow.getDescription()) ? context.getString(R.string.na) :
+            factRow.getDescription();
+    viewHolder.getTvDescription().setText(description);
 
     //Load thumbnail of images
     Picasso.with(viewHolder.getIvThumbnail().getContext())

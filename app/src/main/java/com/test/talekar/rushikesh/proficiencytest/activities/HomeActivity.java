@@ -2,6 +2,7 @@ package com.test.talekar.rushikesh.proficiencytest.activities;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 
 import com.test.talekar.rushikesh.proficiencytest.R;
 import com.test.talekar.rushikesh.proficiencytest.fragments.HomeFragment;
@@ -20,10 +21,14 @@ public class HomeActivity extends AppActivity implements
     setContentView(R.layout.activity_home);
     initUI();
     setListners();
-    addNewsFragment();
+    addFactsFragment();
   }
 
-  private void addNewsFragment() {
+  /**
+   * Used fragment so that It can be reused if required in any other activity
+   * Load UI fragment in activity.
+   */
+  private void addFactsFragment() {
     getSupportFragmentManager().beginTransaction()
         .add(R.id.activity_home_container, HomeFragment.newInstance())
         .commit();
@@ -45,6 +50,6 @@ public class HomeActivity extends AppActivity implements
 
   @Override
   public void setToolbarTitle(String title) {
-    super.setToolbarTitle(title);
+    super.setToolbarTitle(TextUtils.isEmpty(title) ? getString(R.string.home_page) : title);
   }
 }
