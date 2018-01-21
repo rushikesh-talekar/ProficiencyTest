@@ -1,12 +1,14 @@
 package com.test.talekar.rushikesh.proficiencytest.adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.test.talekar.rushikesh.model.Row;
 import com.test.talekar.rushikesh.proficiencytest.R;
@@ -59,10 +61,10 @@ public class CountryFactsCustomAdapter extends RecyclerView.Adapter<CountryFacts
     //Load thumbnail of images
     Picasso.with(viewHolder.getIvThumbnail().getContext())
         .load(factRow.getImageHref())
-        .placeholder(R.drawable.ic_launcher_background)
-        .error(R.drawable.ic_launcher_background)
+        .networkPolicy(NetworkPolicy.OFFLINE)
         .into(viewHolder.getIvThumbnail());
   }
+
 
   @Override
   public int getItemCount() {

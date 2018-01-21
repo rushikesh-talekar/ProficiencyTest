@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.test.talekar.rushikesh.model.Row;
 import com.test.talekar.rushikesh.presenter.CountryFactsPresenter;
@@ -64,15 +63,14 @@ public class HomeFragment extends AppFragment implements CountryFactsContract {
 
   private void initiateAPIToGetFacts() {
     if (isNetworkConnected()) {
-      if (null != swipLayout) {
-        // start refresh animation
-        swipLayout.setRefreshing(true);
-      }
+      setRefreshingState(true);
       CountryFactsContract.UserActionListner userActionListner = new CountryFactsPresenter(this);
       userActionListner.getCountryFacts();
     } else {
+      showLoading(false);
       showNoNetworkError();
-      }
+      setRefreshingState(false);
+    }
   }
 
   @Override
@@ -135,10 +133,7 @@ public class HomeFragment extends AppFragment implements CountryFactsContract {
 
   @Override
   public void onGetCountryFactsSuccess(List<Row> rowsData) {
-    if (null != swipLayout) {
-      // Stop refresh animation
-      swipLayout.setRefreshing(false);
-    }
+    setRefreshingState(false);
     showLoading(false);
     setUIstate(true);
     countryFactsCustomAdapter.refreshfacts(rowsData);
@@ -146,25 +141,19 @@ public class HomeFragment extends AppFragment implements CountryFactsContract {
 
   @Override
   public void showError() {
-    if (null != swipLayout) {
-      // Stop refresh animation
-      swipLayout.setRefreshing(false);
-    }
+    setRefreshingState(false);
     showLoading(false);
-    DialogUtil.showAlertDialog(getContext(),getString(R.string.error),
-            getString(R.string.something_went_wrong));
+    DialogUtil.showAlertDialog(getContext(), getString(R.string.error),
+        getString(R.string.something_went_wrong));
     setUIstate(false);
   }
 
   @Override
   public void showEmptyReponseError() {
-    if (null != swipLayout) {
-      // Stop refresh animation
-      swipLayout.setRefreshing(false);
-    }
+    setRefreshingState(false);
     showLoading(false);
-    DialogUtil.showAlertDialog(getContext(),getString(R.string.error),
-            getString(R.string.error_data_not_available));
+    DialogUtil.showAlertDialog(getContext(), getString(R.string.error),
+        getString(R.string.error_data_not_available));
     setUIstate(false);
   }
 
@@ -189,15 +178,30 @@ public class HomeFragment extends AppFragment implements CountryFactsContract {
 
   /**
    * This method check if data is available to show and load UI accordingly.
+   *
    * @param isDataAvailable - if data available or not
    */
   public void setUIstate(boolean isDataAvailable) {
-    if (isDataAvailable){
+    if (isDataAvailable) {
       mRVCountryFacts.setVisibility(View.VISIBLE);
       tvEmptyState.setVisibility(View.GONE);
-  } else {
-    mRVCountryFacts.setVisibility(View.GONE);
-    tvEmptyState.setVisibility(View.VISIBLE);
+    } else {
+      mRVCountryFacts.setVisibility(View.GONE);
+      tvEmptyState.setVisibility(View.VISIBLE);
+    }
   }
-}
+
+  /**
+   * This method will check whether is page refreshing
+   *
+   * @param setRefreshing - true if page is refreshing
+   */
+  public void setRefreshingState(boolean setRefreshing) {
+    if (null == swipLayout) {
+      return;
+    }
+    // Stop refresh animation
+    swipLayout.setRefreshing(false);
+
+  }
 }
