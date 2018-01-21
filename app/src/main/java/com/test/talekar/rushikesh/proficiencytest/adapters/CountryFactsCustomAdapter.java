@@ -1,7 +1,6 @@
 package com.test.talekar.rushikesh.proficiencytest.adapters;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +60,8 @@ public class CountryFactsCustomAdapter extends RecyclerView.Adapter<CountryFacts
     //Load thumbnail of images
     Picasso.with(viewHolder.getIvThumbnail().getContext())
         .load(factRow.getImageHref())
+        .placeholder(R.drawable.ic_no_photo)
+        .error(R.drawable.ic_no_photo)
         .networkPolicy(NetworkPolicy.OFFLINE)
         .into(viewHolder.getIvThumbnail());
   }
