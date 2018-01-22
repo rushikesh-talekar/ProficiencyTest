@@ -20,9 +20,9 @@ import java.util.Collections;
 public class CountryFactsPresenter implements CountryFactsContract.UserActionListner,
     ResponseCallback {
   public static final String TAG = CountryFactsPresenter.class.getSimpleName();
-  CountryFactsContract viewContract;
+  CountryFactsContract.View viewContract;
 
-  public CountryFactsPresenter(CountryFactsContract viewContract) {
+  public CountryFactsPresenter(CountryFactsContract.View viewContract) {
     this.viewContract = viewContract;
   }
 

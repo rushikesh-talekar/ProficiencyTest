@@ -12,27 +12,30 @@ import java.util.List;
  */
 
 public interface CountryFactsContract {
-  /**
-   * This method will notify user that API request is successful.
-   *
-   * @param rowsData - data from server
-   */
-  void onGetCountryFactsSuccess(List<Row> rowsData);
 
-  /**
-   * This method will update UI if error occurs while fetching data
-   */
-  void showError();
+  interface View {
+    /**
+     * This method will notify user that API request is successful.
+     *
+     * @param rowsData - data from server
+     */
+    void onGetCountryFactsSuccess(List<Row> rowsData);
 
-  /**
-   * This method will update UI if response from server is empty
-   */
-  void showEmptyReponseError();
+    /**
+     * This method will update UI if error occurs while fetching data
+     */
+    void showError();
 
-  /**
-   * This method sets toolbar title.
-   */
-  void setToolbarTitle(String title);
+    /**
+     * This method will update UI if response from server is empty
+     */
+    void showEmptyReponseError();
+
+    /**
+     * This method sets toolbar title.
+     */
+    void setToolbarTitle(String title);
+  }
 
   /**
    * This class is to initiate call from presenter.

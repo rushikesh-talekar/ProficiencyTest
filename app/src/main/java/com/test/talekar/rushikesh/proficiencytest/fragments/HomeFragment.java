@@ -30,13 +30,14 @@ import java.util.List;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends AppFragment implements CountryFactsContract {
+public class HomeFragment extends AppFragment implements CountryFactsContract.View {
 
   private OnFragmentInteractionListener mListener;
   private RecyclerView mRVCountryFacts;
   private SwipeRefreshLayout swipLayout;
   private CountryFactsCustomAdapter countryFactsCustomAdapter;
   private TextView tvEmptyState;
+  private CountryFactsContract.UserActionListner userActionListner;
 
   public HomeFragment() {
     // Required empty public constructor
@@ -48,7 +49,6 @@ public class HomeFragment extends AppFragment implements CountryFactsContract {
    *
    * @return A new instance of fragment HomeFragment.
    */
-  // TODO: Rename and change types and number of parameters
   public static HomeFragment newInstance() {
     HomeFragment fragment = new HomeFragment();
     return fragment;
@@ -58,13 +58,13 @@ public class HomeFragment extends AppFragment implements CountryFactsContract {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     showLoading(true);
+    userActionListner = new CountryFactsPresenter(this);
     initiateAPIToGetFacts();
   }
 
   private void initiateAPIToGetFacts() {
     if (isNetworkConnected()) {
       setRefreshingState(true);
-      CountryFactsContract.UserActionListner userActionListner = new CountryFactsPresenter(this);
       userActionListner.getCountryFacts();
     } else {
       showLoading(false);

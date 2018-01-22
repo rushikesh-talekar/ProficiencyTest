@@ -7,6 +7,7 @@
     <string name="error_data_not_available">Data not available.</string>
     <string name="error_no_network">Network is not available.</string>
     <string name="na">NA</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="content_description_arrow">This is a view to show a right direction arrow</string>
+    <string name="content_description_photo">This is a view to show a image downloaded from
+    server</string>
 </resources>

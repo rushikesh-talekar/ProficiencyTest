@@ -23,7 +23,7 @@ import java.util.List;
 public class CountryFactsCustomAdapter extends RecyclerView.Adapter<CountryFactsCustomAdapter
     .ViewHolder> {
 
-  List<Row> mDataset;
+  private List<Row> mDataset;
 
   public CountryFactsCustomAdapter(List<Row> dataset) {
     this.mDataset = dataset;
