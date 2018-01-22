@@ -9,17 +9,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/fragment_home_rv"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="match_parent" />
-        <TextView
-            android:id="@+id/tv_empty_state"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/error_data_not_available"
-            android:gravity="center"/>
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/fragment_home_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_empty_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/error_data_not_available"
+                android:visibility="visible" />
+        </RelativeLayout>
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>
