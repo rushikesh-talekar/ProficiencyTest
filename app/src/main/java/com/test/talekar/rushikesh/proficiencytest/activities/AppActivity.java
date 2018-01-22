@@ -15,6 +15,7 @@ import com.test.talekar.rushikesh.proficiencytest.R;
 public class AppActivity extends AppCompatActivity {
 
   protected Toolbar toolbar;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -24,10 +25,13 @@ public class AppActivity extends AppCompatActivity {
   /**
    * This method sets title to toolbar.
    *
-   * @param title   - title string
+   * @param title - title string
    */
   void setToolbarTitle(String title) {
     setSupportActionBar(toolbar);
+    if (null == getSupportActionBar()) {
+      return;
+    }
     getSupportActionBar().setTitle(title);
   }
 }
