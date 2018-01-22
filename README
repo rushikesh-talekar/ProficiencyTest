@@ -3,6 +3,5 @@ ProficiencyTest is a POC project which gets data from RESTful webservices and sh
 Third party libraries used:
 1.picasso:2.5.2: To load images
 2.okhttp:2.6.0 and picasso2-okhttp3-downloader:1.1.0 : To provide image caching
-3.Android support libraries
-4.retrofit:2.1.0:For network operations
-5.converter-gson:2.1.0:To convert json response to POJO.
+3.retrofit:2.1.0:For network operations
+4.converter-gson:2.1.0:To convert json response to POJO.
