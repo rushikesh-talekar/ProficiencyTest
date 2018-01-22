@@ -3,6 +3,7 @@ package com.test.talekar.rushikesh.proficiencytest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.test.talekar.rushikesh.proficiencytest.activities.HomeActivity;
@@ -13,10 +14,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static junit.framework.Assert.assertNotNull;
-import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 
 /**
  * Created by Rushikesh_Talekar on 21-01-2018.
@@ -60,9 +61,7 @@ public class UIUnitTestCases {
     }
     TextView mEmptyStateText = (TextView) homeActivity
         .findViewById(R.id.tv_empty_state);
-    String emptyStateText = homeActivity.getResources().getString(R.string
-        .error_data_not_available);
     assertNotNull("EmptyStateTextView is null", mEmptyStateText);
-    assertTrue("Empty stuff", (mEmptyStateText.getText().equals(emptyStateText)));
+    assertThat(mEmptyStateText.getVisibility(), lessThanOrEqualTo(View.VISIBLE));
   }
 }
