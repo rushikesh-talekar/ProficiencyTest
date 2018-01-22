@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Proficiency Test</string>
-    <string name="loading_">Loading...</string>
+    <string name="loading_">Loading&#8230;</string>
     <string name="home_page">Home Page</string>
     <string name="error">Error</string>
     <string name="something_went_wrong">Something went wrong!\nPlease try again later.</string>

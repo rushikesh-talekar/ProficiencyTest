@@ -50,8 +50,7 @@ public class HomeFragment extends AppFragment implements CountryFactsContract.Vi
    * @return A new instance of fragment HomeFragment.
    */
   public static HomeFragment newInstance() {
-    HomeFragment fragment = new HomeFragment();
-    return fragment;
+    return new HomeFragment();
   }
 
   @Override

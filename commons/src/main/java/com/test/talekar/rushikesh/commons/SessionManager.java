@@ -46,18 +46,17 @@ public class SessionManager {
         .setLenient()
         .create();
 
-    Retrofit retrofit = new Retrofit.Builder()
+    return new Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build();
 
-    return retrofit;
   }
 
   /**
    * Method for initializing base url
    *
-   * @param baseUrl
+   * @param baseUrl - base url of application
    */
   public static void init(String baseUrl) {
     SessionManager.baseUrl = baseUrl;

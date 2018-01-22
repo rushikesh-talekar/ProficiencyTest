@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class CountryFactsServiceImpl implements CountryFactsServiceContract,
     Callback<CountryFacts> {
-  ResponseCallback callback;
+  private final ResponseCallback callback;
 
   public CountryFactsServiceImpl(ResponseCallback callback) {
     this.callback = callback;

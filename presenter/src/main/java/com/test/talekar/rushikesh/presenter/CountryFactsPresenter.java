@@ -9,8 +9,6 @@ import com.test.talekar.rushikesh.model.CountryFacts;
 import com.test.talekar.rushikesh.presenter.contracts.CountryFactsContract;
 import com.test.talekar.rushikesh.util.CollectionUtil;
 
-import java.util.Collections;
-
 /**
  * Business logic releated to news will be here.
  *
@@ -20,7 +18,7 @@ import java.util.Collections;
 public class CountryFactsPresenter implements CountryFactsContract.UserActionListner,
     ResponseCallback {
   public static final String TAG = CountryFactsPresenter.class.getSimpleName();
-  CountryFactsContract.View viewContract;
+  private final CountryFactsContract.View viewContract;
 
   public CountryFactsPresenter(CountryFactsContract.View viewContract) {
     this.viewContract = viewContract;

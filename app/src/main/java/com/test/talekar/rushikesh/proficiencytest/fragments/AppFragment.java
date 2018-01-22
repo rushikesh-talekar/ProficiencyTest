@@ -21,7 +21,7 @@ import com.test.talekar.rushikesh.util.NetworkUtil;
  */
 public class AppFragment extends Fragment implements ProgressbarLoader {
 
-  protected ProgressDialog progressDialog;
+  private ProgressDialog progressDialog;
 
   public AppFragment() {
     // Required empty public constructor

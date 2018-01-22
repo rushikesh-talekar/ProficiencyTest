@@ -63,7 +63,7 @@ public class Row implements Parcelable {
   protected Row(Parcel in) {
     this.title = in.readString();
     this.description = in.readString();
-    this.imageHref = in.readParcelable(Object.class.getClassLoader());
+    this.imageHref = in.readString();
   }
 
   public static final Parcelable.Creator<Row> CREATOR = new Parcelable.Creator<Row>() {

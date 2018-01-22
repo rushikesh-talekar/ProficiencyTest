@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.test.talekar.rushikesh.model.Row;
 import com.test.talekar.rushikesh.proficiencytest.R;
@@ -74,7 +73,6 @@ public class CountryFactsCustomAdapter extends RecyclerView.Adapter<CountryFacts
         .load(factRow.getImageHref())
         .placeholder(R.drawable.ic_no_photo)
         .error(R.drawable.ic_no_photo)
-        .networkPolicy(NetworkPolicy.OFFLINE)
         .into(viewHolder.getIvThumbnail());
   }
 

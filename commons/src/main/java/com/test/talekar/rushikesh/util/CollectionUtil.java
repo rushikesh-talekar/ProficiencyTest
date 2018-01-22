@@ -13,8 +13,8 @@ public class CollectionUtil {
   /**
    * Checks if collection is empty.
    *
-   * @param collection
-   * @return
+   * @param collection - collection object to check for empty state
+   * @return true if empty
    */
   public static boolean isEmpty(Collection<?> collection) {
     return collection == null || collection.isEmpty();
@@ -23,8 +23,8 @@ public class CollectionUtil {
   /**
    * Checks if collection is not empty.
    *
-   * @param collection
-   * @return
+   * @param collection - collection object to check for empty state
+   * @return true if is not empty
    */
   public static boolean isNotEmpty(Collection<?> collection) {
     return !isEmpty(collection);
